@@ -1,3 +1,5 @@
+require './lib/card'
+
 class Turn
 
     attr_reader :guess,
@@ -7,4 +9,9 @@ class Turn
         @guess = guess
         @card = card
     end
+
+    def correct?
+        guess == card.answer
+    end
+
 end
