@@ -24,6 +24,10 @@ RSpec.describe Turn do
         card = Card.new("What is the capital of Alaska?", "Juneau", :Geography)
         first_turn = Turn.new("Juneau" , card)
         expect(first_turn.correct?).to be (true)
+
+        card = Card.new("Where is Honolulu?" , "Hawaii" , :Geography)
+        first_turn = Turn.new("Mexico" , card)
+        expect(first_turn.correct?).to be (false)
     end
 
 end
