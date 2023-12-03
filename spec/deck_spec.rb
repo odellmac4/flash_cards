@@ -22,4 +22,16 @@ RSpec.describe Deck do
 
         expect(deck.count).to eq (3)
     end
+
+
+    it 'cards in a specific category' do
+        card_1 = Card.new("Where is Barcelona?" , "Spain" , :Geography)
+        card_2 = Card.new("Where is Beyonce from?" , "Houston" , :Music)
+        card_3 = Card.new("What is Will Smith's occupation?" , "Actor" , :Movies)
+        cards = [card_1 , card_2 , card_3]
+        deck = Deck.new(cards)
+
+        expect(deck.cards_in_category(:Music)).to eq ([card_2])
+    end
+
 end
