@@ -1,4 +1,3 @@
-
 class Deck
 
     attr_reader :cards, :count
@@ -8,6 +7,9 @@ class Deck
         @count = cards.length
     end
 
-
+    def cards_in_category(category)
+        @cards.select { |card| card.category == category }
+    end
 end
-    #try select method or each method
+
+    # try select method or each method
