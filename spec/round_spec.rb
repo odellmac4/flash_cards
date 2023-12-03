@@ -36,4 +36,15 @@ RSpec.describe Round do
 
         expect(round.turns).to eq([])
     end
+
+    it 'current card is the first card in the deck' do
+        card_1 = Card.new("Where is Barcelona?" , "Spain" , :Geography)
+        card_2 = Card.new("Where is Beyonce from?" , "Houston" , :Music)
+        card_3 = Card.new("What is Will Smith's occupation?" , "Actor" , :Movies)
+        cards = [card_1 , card_2 , card_3]
+        deck = Deck.new(cards)
+        round = Round.new(deck)
+        
+        expect(round.current_card).to eq(card_1)
+    end
 end
