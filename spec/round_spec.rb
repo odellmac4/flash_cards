@@ -1,3 +1,4 @@
+require 'pry'
 require './lib/card'
 require './lib/turn'
 require './lib/deck'
@@ -191,5 +192,20 @@ RSpec.describe Round do
         third_turn = round.take_turn("Carpenter") # Third turn
 
         expect(round.percent_correct).to eq(66.7)
+     end
+
+     it 'what perecntage of cards in a specifc category are correct' do
+        card_1 = Card.new("Where is Barcelona?" , "Spain" , :Geography)
+        card_2 = Card.new("Where is Beyonce from?" , "Houston" , :Music)
+        card_3 = Card.new("What is Will Smith's occupation?" , "Actor" , :Movies)
+        cards = [card_1 , card_2 , card_3]
+        deck = Deck.new(cards)
+        round = Round.new(deck)
+
+        first_turn = round.take_turn("Spain") # First turn
+        second_turn = round.take_turn("Houston") # Second turn
+        third_turn = round.take_turn("Carpenter") # Third turn
+
+        expect(round.percent_correct_by_category(:Geography)).to eq(100.0)
      end
 end
