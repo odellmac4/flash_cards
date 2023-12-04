@@ -31,6 +31,13 @@ class Round
         # category_count = @turns.select { |turn| turn.correct? && turn.card.category == category}
         # category_count.count
     end
+
+    def percent_correct
+            # correct_turns = @turns.count do |turn|
+            #     turn.correct?
+            # end
+            ((number_correct.to_f / @turns.length.to_f) * 100).round(1)
+    end
 end
 
 #How do I make it check thru every turn and see if each is correct (iteration method)
