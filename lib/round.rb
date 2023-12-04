@@ -14,15 +14,15 @@ class Round
     def take_turn(guess)
         @new_turn = Turn.new(guess , current_card)
         @turns << @new_turn
-        # @deck.cards.rotate!(1)
+        @deck.cards.rotate!(1)
         @new_turn
     end
 
-    # def number_correct
-    #     @turns.count do |turn|
-    #         turn.correct?
-    #     end
-    # end
+    def number_correct
+        @turns.count do |turn|
+            turn.correct?
+        end
+    end
 end
 
 #How do I make it check thru every turn and see if each is correct (iteration method)
