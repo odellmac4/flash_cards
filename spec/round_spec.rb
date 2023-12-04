@@ -208,4 +208,19 @@ RSpec.describe Round do
 
         expect(round.percent_correct_by_category(:Geography)).to eq(100.0)
      end
+
+     it 'category has multiple incorrect turns' do
+        card_1 = Card.new("Where is Barcelona?" , "Spain" , :Geography)
+        card_2 = Card.new("Where is Beyonce from?" , "Houston" , :Music)
+        card_3 = Card.new("Where is Jennifer Hudson from?" , "Chicago" , :Music)
+        cards = [card_1 , card_2 , card_3]
+        deck = Deck.new(cards)
+        round = Round.new(deck)
+
+        first_turn = round.take_turn("Spain") # First turn
+        second_turn = round.take_turn("Chicago") # Second turn
+        third_turn = round.take_turn("Houston") # Third turn
+
+        expect(round.percent_correct_by_category(:Music)).to eq(0.0)
+     end
 end
