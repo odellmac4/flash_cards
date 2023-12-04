@@ -67,7 +67,35 @@ RSpec.describe Round do
         cards = [card_1 , card_2 , card_3]
         deck = Deck.new(cards)
         round = Round.new(deck)
+
         @new_turn = round.take_turn("Spain")
         expect(@new_turn.correct?).to eq (true)
+
+        @new_turn = round.take_turn("Houston")
+        expect(@new_turn.correct?).to eq (false)
+     end
+
+     it 'shows instances of a turn in the turns method(array)' do
+        card_1 = Card.new("Where is Barcelona?" , "Spain" , :Geography)
+        card_2 = Card.new("Where is Beyonce from?" , "Houston" , :Music)
+        card_3 = Card.new("What is Will Smith's occupation?" , "Actor" , :Movies)
+        cards = [card_1 , card_2 , card_3]
+        deck = Deck.new(cards)
+        round = Round.new(deck)
+
+        @new_turn = round.take_turn("Spain")
+        expect(round.turns).to eq([@new_turn])
+     end
+
+     it 'shows count of correct turns' do
+        card_1 = Card.new("Where is Barcelona?" , "Spain" , :Geography)
+        card_2 = Card.new("Where is Beyonce from?" , "Houston" , :Music)
+        card_3 = Card.new("What is Will Smith's occupation?" , "Actor" , :Movies)
+        cards = [card_1 , card_2 , card_3]
+        deck = Deck.new(cards)
+        round = Round.new(deck)
+
+        @new_turn = round.take_turn("Spain")
+        expect(round.number_correct).to eq(1)
      end
 end
