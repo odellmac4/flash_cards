@@ -23,6 +23,14 @@ class Round
             turn.correct?
         end
     end
+
+    def number_correct_by_category(category)
+
+        @turns.count {|turn| turn.correct? && turn.card.category == category}
+
+        # category_count = @turns.select { |turn| turn.correct? && turn.card.category == category}
+        # category_count.count
+    end
 end
 
 #How do I make it check thru every turn and see if each is correct (iteration method)
