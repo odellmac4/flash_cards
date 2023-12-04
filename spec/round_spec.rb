@@ -44,7 +44,30 @@ RSpec.describe Round do
         cards = [card_1 , card_2 , card_3]
         deck = Deck.new(cards)
         round = Round.new(deck)
-        
+
         expect(round.current_card).to eq(card_1)
     end
+
+    it 'is a turn' do
+        card_1 = Card.new("Where is Barcelona?" , "Spain" , :Geography)
+        card_2 = Card.new("Where is Beyonce from?" , "Houston" , :Music)
+        card_3 = Card.new("What is Will Smith's occupation?" , "Actor" , :Movies)
+        cards = [card_1 , card_2 , card_3]
+        deck = Deck.new(cards)
+        round = Round.new(deck)
+        @new_turn = round.take_turn("Spain")
+
+        expect(@new_turn).to be_instance_of (Turn)
+    end
+
+     it 'is a new turn' do
+        card_1 = Card.new("Where is Barcelona?" , "Spain" , :Geography)
+        card_2 = Card.new("Where is Beyonce from?" , "Houston" , :Music)
+        card_3 = Card.new("What is Will Smith's occupation?" , "Actor" , :Movies)
+        cards = [card_1 , card_2 , card_3]
+        deck = Deck.new(cards)
+        round = Round.new(deck)
+        @new_turn = round.take_turn("Spain")
+        expect(@new_turn.correct?).to eq (true)
+     end
 end
