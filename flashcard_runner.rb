@@ -28,6 +28,7 @@ def start
     puts "Welcome! You're playing with #{@cards.count} cards"
     puts "-------------------------------------------------"
     
+    # *MORE FLEXIBLE METHOD*
     # @cards.each do |card|
     #     puts "This is card number 1 out of #{@cards.count}."
 
@@ -36,6 +37,7 @@ def start
 
     #     turn = @round.take_turn(guess)
     #     puts turn.feedback
+    #     @number_of_card += 1
 
     # end
 
@@ -96,12 +98,16 @@ def start
         puts "****** Game over! ******"
         puts "You had #{@round.number_correct} out of #{@cards.count} for a score of #{@round.percent_correct}%"
 
-        puts "Geography - #{@round.percent_correct_by_category(:Geography)}% correct"
+        def individual_category_count
+            individual_category = []
+            @cards.each do |card|
+                individual_category << card.category
+            end
+            individual_category.uniq!
+        end
 
-        puts "Music - #{@round.percent_correct_by_category(:Music)}% correct"
-
-        puts "Movies - #{@round.percent_correct_by_category(:Movies)}% correct"
+        individual_category_count.each do |category|
+            puts "#{category} - #{@round.percent_correct_by_category(category)}% correct"
+        end
 end
 start
-
-#need to figure out the method to retrieve card number
